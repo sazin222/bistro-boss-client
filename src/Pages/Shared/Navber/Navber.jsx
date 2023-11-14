@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../provider/Authprovider";
 import { BsCartPlusFill} from 'react-icons/bs';
+import useCarts from "../../../Hooks/useCarts";
 const Navber = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [cart]=useCarts()
   const handelLogOut = () => {
     logOut()
       .then((result) => {
@@ -35,7 +37,7 @@ const Navber = () => {
         <Link to={"/"}>
           <button className="flex justify-center items-center">
           <BsCartPlusFill size={'20px'}></BsCartPlusFill>
-            <div className="badge badge-secondary">+0</div>
+            <div className="badge badge-secondary">+0{cart.length}</div>
           </button>
         </Link>
       </li>
