@@ -35,7 +35,7 @@ const Navber = () => {
         <Link to={"/secret"}> Secret</Link>
       </li>
       <li>
-        <Link to={"/"}>
+        <Link to={"/dashboard/cart"}>
           <button className="flex justify-center items-center">
           <BsCartPlusFill size={'20px'}></BsCartPlusFill>
             <div className="badge badge-secondary">+0{cart.length}</div>

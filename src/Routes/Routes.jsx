@@ -10,6 +10,7 @@ import Register from "../Pages/Register/Register";
 import Secret from "../Pages/Shared/Secret/Secret";
 import PrivetRoute from "./PrivetRoute";
 import Dashboard from "../Layout/Dashboard";
+import Cart from "../Pages/Dashboard/Cart/Cart";
 
   export const router = createBrowserRouter([
     {
@@ -50,6 +51,7 @@ import Dashboard from "../Layout/Dashboard";
       children:[
         {
           path:'cart',
+          element: <Cart></Cart>
         }
       ]
     }
