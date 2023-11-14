@@ -1,5 +1,5 @@
 import { BsCartPlusFill } from "react-icons/bs";
-import { FaCalendar, FaHome, FaReact } from "react-icons/fa";
+import { FaCalendar, FaElementor, FaHome, FaReact } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
@@ -54,7 +54,7 @@ const Dashboard = () => {
                 <li>
                   
                   <NavLink to={'/order/salad'}>
-                  <FaHome />
+                  <FaElementor/>
                      Menu
                   </NavLink>
               </li>
@@ -62,7 +62,7 @@ const Dashboard = () => {
               </ul>
             </div>
             {/* dashboard content */}
-            <div className="flex-1">
+            <div className="flex-1 p-7">
                 <Outlet></Outlet>
             </div>
         </div>
