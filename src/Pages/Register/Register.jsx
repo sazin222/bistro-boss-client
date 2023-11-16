@@ -4,9 +4,12 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/Authprovider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 
 const Register = () => {
+  const axiosPublic = useAxiosPublic()
     const {
         register,
         reset,
@@ -20,20 +23,31 @@ const Register = () => {
         console.log(data)
         createUser(data.email, data.password)
         .then(result=>{
-          const user= result.user
-          console.log(user);
+          const LoggedUser= result.user
+          console.log(LoggedUser.email);
           updateUserProfile(data.name, data.photoURL)
-          .then(result=>{
-            console.log(result.user);
-            reset()
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "User Created Successfully",
-              showConfirmButton: false,
-              timer: 1500
-            }); 
-            navigate('/')
+          .then(()=>{
+            // create user add on database 
+            const userInfo={
+              name: data.name,
+              email: data.email
+            }
+            axiosPublic.post('/users', userInfo)
+            .then(res=>{
+              if(res.data.insertedId){
+                console.log('user added the database ');
+                reset()
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "User Created Successfully",
+                  showConfirmButton: false,
+                  timer: 1500
+                }); 
+                navigate('/')
+              }
+            })
+          
           })
           .catch(error=>{
             console.log(error);
@@ -109,9 +123,10 @@ const Register = () => {
                 <button type="submit" className="btn btn-primary">Sing Up</button>
               </div>
             </form>
-            <p>
-              <small>Already have an account <Link to={'/login'}> Go Log in</Link></small>
+            <p className="text-center py-3">
+              <small>Already have an account ? <Link to={'/login'}> Go Log in</Link></small>
             </p>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>

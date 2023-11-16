@@ -4,6 +4,7 @@ import { AuthContext } from '../../provider/Authprovider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../Components/SocialLogin/SocialLogin';
 
 const Login = () => {
     // const captcha = useRef(null)
@@ -128,11 +129,13 @@ const Login = () => {
         <button disabled={disAbled} type="submit" className="btn btn-primary">Login</button>
       </div>
     </form>
-    <p> <small>New here ?</small> <Link to={'/register'}>
+    <p className='text-center p-3'> <small>New here ?</small> <Link to={'/register'}>
        Create A new Account
       </Link> </p>
+      <SocialLogin></SocialLogin>
   </div>
-</div>
+  </div>
+   
 </div>
     
     </>
